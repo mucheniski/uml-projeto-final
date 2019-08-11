@@ -1,4 +1,4 @@
-package com.mucheniski.domain;
+package com.mucheniski.domains;
 
 import java.io.Serializable;
 
