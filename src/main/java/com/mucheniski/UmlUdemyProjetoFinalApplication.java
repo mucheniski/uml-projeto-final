@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.mucheniski.domains.Categoria;
 import com.mucheniski.domains.Cidade;
+import com.mucheniski.domains.Cliente;
+import com.mucheniski.domains.Endereco;
 import com.mucheniski.domains.Estado;
 import com.mucheniski.domains.Produto;
+import com.mucheniski.enums.TipoCliente;
 import com.mucheniski.repositories.CategoriaRepository;
 import com.mucheniski.repositories.CidadeRepository;
+import com.mucheniski.repositories.ClienteRepository;
+import com.mucheniski.repositories.EnderecoRepository;
 import com.mucheniski.repositories.EstadoRepository;
 import com.mucheniski.repositories.ProdutoRepository;
 
@@ -30,6 +35,12 @@ public class UmlUdemyProjetoFinalApplication implements CommandLineRunner {
 	
 	@Autowired
 	CidadeRepository cidadeRepository;
+	
+	@Autowired
+	ClienteRepository clienteRepository;
+	
+	@Autowired
+	EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UmlUdemyProjetoFinalApplication.class, args);
@@ -62,11 +73,21 @@ public class UmlUdemyProjetoFinalApplication implements CommandLineRunner {
 		estado1.getCidades().addAll(Arrays.asList(cidade1));
 		estado2.getCidades().addAll(Arrays.asList(cidade2, cidade3));
 		
+		Cliente cliente1 = new Cliente(null, "Bruna", "bruna@teste", "08080808029", TipoCliente.PESSOAFISICA);
+		cliente1.getTelefones().addAll(Arrays.asList("888888888", "9999999"));
+		
+		Endereco endereco1 = new Endereco(null, "Rua nome da rua1", "123", "apto1", "Centro", "88888888", cliente1, cidade1);
+		Endereco endereco2 = new Endereco(null, "Rua nome da rua2", "321", "apto2", "Centro", "88888888", cliente1, cidade2);
+		
+		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 		
 		categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
 		produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
+		clienteRepository.saveAll(Arrays.asList(cliente1));
+		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
+		
 	}
 
 }
