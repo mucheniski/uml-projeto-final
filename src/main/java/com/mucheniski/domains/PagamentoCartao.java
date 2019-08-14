@@ -1,7 +1,10 @@
 package com.mucheniski.domains;
 
+import javax.persistence.Entity;
+
 import com.mucheniski.enums.StatusPagamento;
 
+@Entity
 public class PagamentoCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
