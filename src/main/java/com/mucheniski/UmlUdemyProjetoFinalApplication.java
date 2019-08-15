@@ -13,6 +13,7 @@ import com.mucheniski.domains.Cidade;
 import com.mucheniski.domains.Cliente;
 import com.mucheniski.domains.Endereco;
 import com.mucheniski.domains.Estado;
+import com.mucheniski.domains.ItemPedido;
 import com.mucheniski.domains.Pagamento;
 import com.mucheniski.domains.PagamentoBoleto;
 import com.mucheniski.domains.PagamentoCartao;
@@ -25,6 +26,7 @@ import com.mucheniski.repositories.CidadeRepository;
 import com.mucheniski.repositories.ClienteRepository;
 import com.mucheniski.repositories.EnderecoRepository;
 import com.mucheniski.repositories.EstadoRepository;
+import com.mucheniski.repositories.ItemPedidoRepository;
 import com.mucheniski.repositories.PagamentoRepository;
 import com.mucheniski.repositories.PedidoRepository;
 import com.mucheniski.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class UmlUdemyProjetoFinalApplication implements CommandLineRunner {
 	
 	@Autowired
 	PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UmlUdemyProjetoFinalApplication.class, args);
@@ -108,6 +113,17 @@ public class UmlUdemyProjetoFinalApplication implements CommandLineRunner {
 		
 		cliente1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
 		
+		ItemPedido itemPedido1 = new ItemPedido(pedido1, produto1, 0.00, 1, 2000.00);
+		ItemPedido itemPedido2 = new ItemPedido(pedido1, produto3, 0.00, 2, 80.00);
+		ItemPedido itemPedido3 = new ItemPedido(pedido2, produto2, 100.00, 1, 800.00);
+		
+		pedido1.getItens().addAll(Arrays.asList(itemPedido1, itemPedido2));
+		pedido2.getItens().addAll(Arrays.asList(itemPedido3));
+		
+		produto1.getItens().addAll(Arrays.asList(itemPedido1));
+		produto2.getItens().addAll(Arrays.asList(itemPedido3));
+		produto3.getItens().addAll(Arrays.asList(itemPedido2));
+		
 		categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
 		produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
@@ -116,6 +132,7 @@ public class UmlUdemyProjetoFinalApplication implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
 		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
 		pagamentoRepository.saveAll(Arrays.asList(pagamentoCartao1, pagamentoBoleto1));
+		itemPedidoRepository.saveAll(Arrays.asList(itemPedido1, itemPedido2, itemPedido3));
 		
 	}
 
