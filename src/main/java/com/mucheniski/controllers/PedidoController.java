@@ -1,4 +1,4 @@
-package com.mucheniski.resources;
+package com.mucheniski.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mucheniski.domains.Cliente;
-import com.mucheniski.services.ClienteService;
+import com.mucheniski.domains.Pedido;
+import com.mucheniski.services.PedidoService;
 
 @RestController
-@RequestMapping(value = "/clientes")
-public class ClienteResource {
-
+@RequestMapping(value = "/pedidos")
+public class PedidoController {
+	
 	@Autowired
-	ClienteService clienteService;
+	PedidoService pedidoService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
-		Cliente cliente = clienteService.findById(id);
-		return ResponseEntity.ok().body(cliente);
+	public ResponseEntity<Pedido> findById(@PathVariable Integer id) {
+		Pedido pedido = pedidoService.findById(id);
+		return ResponseEntity.ok().body(pedido);
 	}
-	
+
 }

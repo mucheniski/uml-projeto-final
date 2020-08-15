@@ -1,4 +1,4 @@
-package com.mucheniski.resources;
+package com.mucheniski.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import com.mucheniski.services.CategoriaService;
 
 @RestController
 @RequestMapping(value = "/categorias")
-public class CategoriaResource {
+public class CategoriaController {
 
 	@Autowired
 	CategoriaService categoriaService;
