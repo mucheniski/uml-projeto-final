@@ -3,26 +3,17 @@ package com.mucheniski.domains;
 import javax.persistence.Entity;
 
 import com.mucheniski.enums.StatusPagamento;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class PagamentoCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 
 	private Integer numeroParcelas;	
-	
-	public PagamentoCartao() {}
-	
-	public PagamentoCartao(Integer id, StatusPagamento status, Pedido pedido, Integer numeroParcelas) {
-		super(id, status, pedido);
-		this.setNumeroParcelas(numeroParcelas);
-	}
 
-	public Integer getNumeroParcelas() {
-		return numeroParcelas;
-	}
-
-	public void setNumeroParcelas(Integer numeroParcelas) {
-		this.numeroParcelas = numeroParcelas;
-	}
-	
 }
